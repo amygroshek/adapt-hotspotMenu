@@ -9,7 +9,7 @@ define([
 		className: function() {
 			return MenuView.prototype.className.call(this) + " hotspot-menu";
 		},
-		
+
 		postRender: function() {
 			this.setBackgroundImage();
 			this.setUpItems();
@@ -18,8 +18,13 @@ define([
 		setBackgroundImage: function() {
 			var config = this.model.get("_hotspotMenu");
 			var src = config && config._backgroundSrc;
-
-			if (src) this.$el.css("background-image", "url(" + src + ")");
+            var styles = {
+                "background-image" : "url(" + config._backgroundSrc + ")",
+                "width": config._backgroundWidth,
+                "height": config._backgroundHeight
+            };
+			// if (src) this.$el.find('.hotspot-menu-item-container').css("background-image", "url(" + src + ")");
+            if (src) this.$el.find('.hotspot-menu-item-container').css( styles );
 		},
 
 		setUpItems: function() {
